@@ -1,6 +1,6 @@
 {
   "name": "express-adaptive-images",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Connect/Express middleware for serving up adaptive images based on device width.",
   "main": "index.js",
   "repository": {
