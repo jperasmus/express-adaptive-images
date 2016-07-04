@@ -1,0 +1,34 @@
+{
+  "name": "express-adaptive-images",
+  "version": "0.9.0",
+  "description": "Connect/Express middleware for serving up adaptive images based on device width.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jperasmus/express-adaptive-images.git"
+  },
+  "keywords": [
+    "adaptive",
+    "responsive",
+    "image",
+    "webp",
+    "jpeg",
+    "gif",
+    "png",
+    "connect",
+    "express",
+    "middleware"
+  ],
+  "author": "JP Erasmus <jperasmus11@gmail.com> (https://jperasmus.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jperasmus/express-adaptive-images/issues"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "gm": "^1.22.0",
+    "is-mobile": "^0.2.2",
+    "mkdirp": "^0.5.1",
+    "vary": "^1.0.0"
+  }
+}
