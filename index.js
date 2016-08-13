@@ -6,10 +6,10 @@
 
 var url = require('url');
 var path = require('path');
-var fs = require('fs');
+var fs = require('fs-extra');
 var mobile = require('is-mobile');
 var vary = require('vary');
-var mkdirp = require('mkdirp');
+var chalk = require('chalk');
 
 var getResolution = function(totalWidth, breakpoints) {
   var result = null;
@@ -46,7 +46,7 @@ module.exports = function(dirName, options) {
   var debug = function() {
     if (debugEnabled) {
       console.log('\n');
-      console.log([].slice.call(arguments));
+      console.log([].slice.call(chalk.blue(arguments)));
     }
   };
 
@@ -72,6 +72,9 @@ module.exports = function(dirName, options) {
 
     // Check device resolution
     var cookieValue = req.cookies.resolution;
+    if (!cookieValue) {
+      throw new Error(chalk.red(chalk.underline('"express-adaptive-images":') + ' Make sure to set a cookie named "resolution".\n'));
+    }
     var cookieData = cookieValue.split(',');
     var clientWidth = parseInt(cookieData[0] || 0, 10); // the base resolution (CSS pixels)
     var totalWidth = clientWidth;
@@ -164,7 +167,7 @@ module.exports = function(dirName, options) {
         // If it doesn't exist or has expired; recreate correct size image in correct directory
         if (sizeError) {
           debug('Cached image doesn\'t exist, so we have to create it.');
-          mkdirp(cacheFileDirectory, function(makeError) {
+          fs.mkdirs(cacheFileDirectory, function(makeError) {
             if (makeError) {
               debug('Creation of cached directory failed.');
               next();
